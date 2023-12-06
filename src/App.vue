@@ -1,15 +1,24 @@
 <template>
-  <div id="app">
-
-  </div>
+  <div id="app"></div>
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from "axios";
 export default {
-  name: 'App',
-
-}
+  name: "App",
+  data() {
+    return {
+      pokemons: [],
+    };
+  },
+  created: function () {
+    axios
+      .get("https://pokeapi.co/api/v2/pokemon?limit=15&offset=0")
+      .then((data) => {
+        this.pokemons = data.data.results;
+      });
+  },
+};
 </script>
 
 <style>
